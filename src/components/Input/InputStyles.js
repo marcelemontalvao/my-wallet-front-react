@@ -8,7 +8,8 @@ export const InputStyle = styled.div`
     border-radius: 5px;
 
     p {
-        padding-top: 5px;
+        padding-top: 8px;
+        color: #fff;
     }
 `
 

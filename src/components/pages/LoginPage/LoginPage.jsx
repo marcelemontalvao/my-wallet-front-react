@@ -39,8 +39,8 @@ const LoginPage = () => {
             <LoginPageStyle>
                 <h1>My Wallet</h1>
                 <FormLoginPage method="POST" onSubmit={handleSubmit(submitFormFunction)} noValidate>
-                    <Input register={register("email")} type="email" name="email" id="email" placeholder="E-mail" disabled={disabled} />
-                    <Input register={register("password")} type="password" name="password" id="password" placeholder="Senha" disabled={disabled} />
+                    <Input register={register("email")} type="email" name="email" id="email" placeholder="E-mail" disabled={disabled} errors={errors.email?.message && <p aria-label="error">{errors.email.message}</p>} />
+                    <Input register={register("password")} type="password" name="password" id="password" placeholder="Senha" disabled={disabled} errors={errors.password?.message && <p aria-label="error">{errors.password.message}</p>} />
                     <Button1 type={"submit"} text={
                         <ThreeDots
                             height="60"
