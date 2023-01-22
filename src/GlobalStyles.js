@@ -28,7 +28,9 @@ export const GlobalStyles = createGlobalStyle`
     }
     body {
         line-height: 1;
-        font-family: 'Lexend Deca';
+        heigth: 100vh;
+        font-family: 'Raleway', sans-serif;
+        background-color: #8C11BE;
     }
     ol, ul {
         list-style: none;
