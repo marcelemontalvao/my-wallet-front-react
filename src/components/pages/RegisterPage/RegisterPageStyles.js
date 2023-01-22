@@ -6,6 +6,7 @@ export const RegisterPageStyle = styled.main`
     justify-content: center;
     align-items: center;
     height: 100vh;
+    gap: 15px;
 
     h1 {
         font-family: 'Saira Stencil One', cursive;
@@ -13,13 +14,20 @@ export const RegisterPageStyle = styled.main`
         line-height: 50px;
         color: #FFFFFF;
     }
+
+    a {
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+        color: #FFFFFF;
+        text-decoration: none;
+    }
 `
 
-export const FormLoginPage = styled.form`
+export const FormRegisterPage = styled.form`
     max-width: 375px;
-    width: 80%;
-    max-height: 185px;
-    height: 100%;
+    width: 100%;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;

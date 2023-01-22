@@ -1,7 +1,19 @@
 import styled from "styled-components";
 
-export const InputStyle = styled.input`
+
+export const InputStyle = styled.div`
     max-width: 326px;
+    width: 100%;
+    max-height: 80px; 
+    border-radius: 5px;
+
+    p {
+        padding-top: 5px;
+    }
+`
+
+export const Inputs = styled.input`
+    max-width: 350px;
     width: 100%;
     height: 58px;
     background-color: #FFFFFF;

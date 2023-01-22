@@ -1,7 +1,12 @@
-import { InputStyle } from "./InputStyles";
+import { InputStyle, Inputs } from "./InputStyles";
 
-const Input = ({onChange, type, name, id, placeholder, disabled}) => {
-    return <InputStyle onChange={onChange} name={name} id={id} type={type} disabled={disabled} placeholder={placeholder} required/>
+const Input = ({ register, errors, placeholder, disabled, ...rest }) => {
+    return (
+        <InputStyle>
+            <Inputs {...register} disabled={disabled} placeholder={placeholder} {...rest} />
+            {errors}
+        </InputStyle>
+    )
 }
 
 export default Input;

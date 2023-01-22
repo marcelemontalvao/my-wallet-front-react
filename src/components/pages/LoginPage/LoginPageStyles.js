@@ -26,9 +26,8 @@ export const LoginPageStyle = styled.main`
 
 export const FormLoginPage = styled.form`
     max-width: 375px;
-    width: 80%;
-    max-height: 185px;
-    height: 100%;
+    width: 100%;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
