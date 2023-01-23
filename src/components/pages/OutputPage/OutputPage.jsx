@@ -5,15 +5,36 @@ import Button1 from "../../Button1/Button1"
 import Input from "../../Input/Input"
 import { OutputPageStyle, FormOutputPage } from "./OutputPageStyles";
 import outputSchema from "./OutputSchema";
+import { api } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 const OutputPage = () => {
+    const navigate = useNavigate()
     const [disabled, setDisabled] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(outputSchema),
     })
+    const [loading, setLoading] = useState(false)
 
     const submitFormFunction = async (data) => {
-        
+        setLoading(true)
+        setDisabled(true)
+        const transaction = {
+            ...data,
+            type: "output"
+        }
+        try {
+            const response = await api.post("/transactions", transaction)
+            if (response.status === 201) {
+                setLoading(false)
+                setDisabled(false)
+                navigate("/home")
+            }
+        } catch (error) {
+            alert("Erro: " + error)
+            setLoading(false)
+            setDisabled(false)
+        }
     }
 
     return (

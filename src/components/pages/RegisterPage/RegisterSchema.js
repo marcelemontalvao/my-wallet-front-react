@@ -18,19 +18,10 @@ const registerSchema = yup.object().shape({
         .matches(/(?=.*?[a-z])/, "A senha deve ter no mínimo 1 letra minúscula")
         .matches(/(?=.*?[0-9])/, "A senha deve ter no mínimo 1 número")
         .matches(/(?=.*?[#?!@$%^&*-])/, "A senha deve ter no mínimo um símbolo"),
-    bio: yup
-        .string()
-        .required("A bio é obrigatória."),
-    contact: yup
-        .string()
-        .required("O contato é obrigatório."),
-    course_module: yup
-        .string()
-        .required("O módulo é obrigatório."),
     passwordConfirm: yup
         .string()
         .required("Você deve confirmar sua senha.")
         .oneOf([yup.ref('password')], 'As senhas não coincidem')
 })
 
-export default registerSchema
+export default registerSchema;
