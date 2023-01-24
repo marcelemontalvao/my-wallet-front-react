@@ -10,7 +10,7 @@ import { api } from "../../../services/api";
 const HomePage = () => {
     const { user, token, logoutFunction } = useContext(UserContext);
     const [transactions, setTransactions] = useState([])
-    console.log(transactions)
+    const [ balance, setBalance ] = useState(0)
 
     useEffect(()=> {
         const getTransactions = async () => {
@@ -25,17 +25,18 @@ const HomePage = () => {
                     return null;
                 } else if (response && response.status === 200) {
                     console.log(response.data)
-                    const result = response.data.reduce((acc, transaction) => {
-                        switch (transaction.type) {
+                    const balance = response.data.reduce((acc, transaction) => {
+                        console.log(transaction)
+                        switch (transaction.transaction.type) {
                           case 'input':
-                            return acc + transaction.value;
+                            return acc + transaction.transaction.value;
                           case 'output':
-                            return acc - transaction.value;
+                            return acc - transaction.transaction.value;
                           default:
                             return acc;
                         }
                       }, 0);
-                      console.log(result)
+                      setBalance(balance)
                     setTransactions(response.data)
                 }
             } catch (error) {
@@ -69,8 +70,8 @@ const HomePage = () => {
                         })}
                     </div>
                     <div className="transaction">
-                        <span>SALDO</span>
-                        <span className="input">2849.96</span>
+                        <span className="bold">SALDO</span>
+                        <span className="input">{balance.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
                     </div>
                 </div>
                 <div className="third-div">

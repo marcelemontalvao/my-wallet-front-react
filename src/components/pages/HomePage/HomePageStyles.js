@@ -101,6 +101,10 @@ export const HomePageStyle = styled.main`
         color: #C70000;
     }
 
+    .bold {
+        font-weight: 700;
+    }
+
     a {
         text-decoration: none;
     }
