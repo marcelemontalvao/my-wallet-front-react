@@ -24,9 +24,9 @@ const HomePage = () => {
                 if(!response) {
                     return null;
                 } else if (response && response.status === 200) {
-                    console.log(response.data)
+                    
                     const balance = response.data.reduce((acc, transaction) => {
-                        console.log(transaction)
+                        
                         switch (transaction.transaction.type) {
                           case 'input':
                             return acc + transaction.transaction.value;
@@ -57,21 +57,31 @@ const HomePage = () => {
                     <div>
                         {transactions.map((transaction, index)=> {
                             if(transaction.transaction.type === "input") {
-                                return <div className="transaction">
-                                    <span key={index}> <span className="date"> {transaction.transaction.createdAt}</span> {transaction.transaction.description}</span>
-                                    <span className="input">{transaction.transaction.value.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
-                                </div>
-                            } else {
-                                return <div className="transaction">
-                                    <span key={index}> <span className="date">{transaction.transaction.createdAt} </span> {transaction.transaction.description}</span>
-                                    <span className="output">{transaction.transaction.value.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
-                                </div>
+                                return (
+                                    <div className="transaction">
+                                        <span key={index}> 
+                                            <span className="date"> {transaction.transaction.createdAt}</span> 
+                                            <span className="description">{transaction.transaction.description}</span>  
+                                        </span>
+                                        <span className="input">{transaction.transaction.value.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
+                                    </div>
+                                ) 
+                            } else if(transaction.transaction.type === "output") {
+                                return (
+                                    <div className="transaction">
+                                        <span key={index}> 
+                                            <span className="date"> {transaction.transaction.createdAt}</span> 
+                                            <span className="description">{transaction.transaction.description}</span> 
+                                        </span>
+                                        <span className="output">{transaction.transaction.value.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
+                                    </div>
+                                )
                             }
                         })}
                     </div>
                     <div className="transaction">
                         <span className="bold">SALDO</span>
-                        <span className="input">{balance.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
+                        <span className={balance > 0 ? "input" : "output"}>{balance.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
                     </div>
                 </div>
                 <div className="third-div">

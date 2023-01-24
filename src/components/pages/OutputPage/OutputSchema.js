@@ -7,6 +7,7 @@ const outputSchema = yup.object().shape({
     description: yup
         .string()
         .required("A descrição é obrigatória.")
+        .max(10)
 })
 
 export default outputSchema;

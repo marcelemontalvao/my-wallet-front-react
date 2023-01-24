@@ -91,6 +91,7 @@ export const HomePageStyle = styled.main`
 
     .date {
         color: #C6C6C6;
+        padding-right: 10px;
     }
 
     .input {
@@ -103,6 +104,10 @@ export const HomePageStyle = styled.main`
 
     .bold {
         font-weight: 700;
+    }
+
+    .description {
+        max-width: 50px !important; 
     }
 
     a {
