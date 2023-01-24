@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
@@ -16,8 +16,8 @@ export const UserProvider = ({ children }) => {
         setDisabled(true)
         
         try {
-            const response = await api.post("/signin", data)
-            console.log(response)
+            const response = await api.post(`/signin`, data)
+            
             if (response.status === 200) {
                 setLoading(false)
                 setDisabled(false)

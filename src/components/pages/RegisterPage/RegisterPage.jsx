@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterPageStyle, FormRegisterPage } from "./RegisterPageStyles.js"
 import { ThreeDots } from "react-loader-spinner"
-import { api } from "../../../services/api.js"
 import Button1 from "../../Button1/Button1.jsx";
 import Input from "../../Input/Input.jsx";
 import registerSchema from "./RegisterSchema.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
+import { api } from "../../../services/api.js";
 
 const RegisterPage = () => {
     const navigate = useNavigate()
@@ -17,13 +17,15 @@ const RegisterPage = () => {
     const [loading, setLoading] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const onInvalid = (errors) => console.error(errors)
+    const baseurl = process.env.REACT_APP_API_URL
+
 
     const submitFormFunctionSignup = async (data) => {
         setLoading(true)
         setDisabled(true)
         try {
             unregister("passwordConfirm")
-            const response = await api.post("/signup", data)
+            const response = await api.post(`/signup`, data)
             if (response.status === 201) {
                 setLoading(false)
                 setDisabled(false)

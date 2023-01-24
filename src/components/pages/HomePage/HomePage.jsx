@@ -7,15 +7,17 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import { api } from "../../../services/api";
 
+
 const HomePage = () => {
     const { user, token, logoutFunction } = useContext(UserContext);
     const [transactions, setTransactions] = useState([])
     const [ balance, setBalance ] = useState(0)
+   
 
     useEffect(()=> {
         const getTransactions = async () => {
             try {
-                const response = await api.get("/transactions", {
+                const response = await api.get(`/transactions`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     } 

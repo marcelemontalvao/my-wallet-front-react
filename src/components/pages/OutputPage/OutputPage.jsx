@@ -5,9 +5,9 @@ import Button1 from "../../Button1/Button1"
 import Input from "../../Input/Input"
 import { OutputPageStyle, FormOutputPage } from "./OutputPageStyles";
 import outputSchema from "./OutputSchema";
-import { api } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserContext";
+import { api } from "../../../services/api";
 
 const OutputPage = () => {
     const navigate = useNavigate()
@@ -17,6 +17,7 @@ const OutputPage = () => {
     })
     const [loading, setLoading] = useState(false)
     const { token } = useContext(UserContext);
+    const baseurl = process.env.REACT_APP_API_URL
 
     const submitFormFunction = async (data) => {
         setLoading(true)
@@ -26,7 +27,7 @@ const OutputPage = () => {
             type: "output"
         }
         try {
-            const response = await api.post("/transactions", transaction, {
+            const response = await api.post(`/transactions`, transaction, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 } 

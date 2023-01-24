@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginPageStyle, FormLoginPage } from "./LoginPageStyles.js";
 import { ThreeDots } from "react-loader-spinner"
-import { api } from "../../../services/api.js"
 import Button1 from "../../Button1/Button1.jsx";
 import Input from "../../Input/Input.jsx";
 import loginSchema from "./LoginSchema.js";

@@ -2,12 +2,12 @@ import * as yup from "yup"
 
 const outputSchema = yup.object().shape({
     value: yup
-        .string()
+        .number()
         .required("O valor é obrigatório"),
     description: yup
         .string()
         .required("A descrição é obrigatória.")
-        .max(10)
+        .max(12)
 })
 
 export default outputSchema;

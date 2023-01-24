@@ -17,7 +17,7 @@ const InputPage = () => {
     })
     const [loading, setLoading] = useState(false);
     const { token } = useContext(UserContext);
-    console.log(token)
+    const baseurl = process.env.REACT_APP_API_URL
 
     const submitFormFunction = async (data) => {
         setLoading(true)
@@ -27,7 +27,7 @@ const InputPage = () => {
             type: "input"
         }
         try {
-            const response = await api.post("/transactions", transaction, {
+            const response = await api.post(`/transactions`, transaction, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 } 
