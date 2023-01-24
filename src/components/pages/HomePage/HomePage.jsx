@@ -35,7 +35,7 @@ const HomePage = () => {
         getTransactions()
     }, [])
 
-    if (transactions.length !== undefined) {
+    if (!transactions) {
         return (
             <HomePageStyle>
                 <div className="first-div">

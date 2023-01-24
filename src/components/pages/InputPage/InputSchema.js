@@ -2,7 +2,7 @@ import * as yup from "yup"
 
 const inputSchema = yup.object().shape({
     value: yup
-        .string()
+        .number()
         .required("O valor é obrigatório"),
     description: yup
         .string()

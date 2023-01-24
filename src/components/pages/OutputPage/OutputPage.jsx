@@ -1,12 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Button1 from "../../Button1/Button1"
 import Input from "../../Input/Input"
 import { OutputPageStyle, FormOutputPage } from "./OutputPageStyles";
 import outputSchema from "./OutputSchema";
 import { api } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../contexts/UserContext";
 
 const OutputPage = () => {
     const navigate = useNavigate()
@@ -15,6 +16,7 @@ const OutputPage = () => {
         resolver: yupResolver(outputSchema),
     })
     const [loading, setLoading] = useState(false)
+    const { token } = useContext(UserContext);
 
     const submitFormFunction = async (data) => {
         setLoading(true)
@@ -24,7 +26,11 @@ const OutputPage = () => {
             type: "output"
         }
         try {
-            const response = await api.post("/transactions", transaction)
+            const response = await api.post("/transactions", transaction, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                } 
+            })
             if (response.status === 201) {
                 setLoading(false)
                 setDisabled(false)
@@ -39,7 +45,7 @@ const OutputPage = () => {
 
     return (
         <OutputPageStyle>
-            <FormOutputPage onSubmit={handleSubmit(submitFormFunction)} noValidate>
+            <FormOutputPage onSubmit={handleSubmit(submitFormFunction)}>
 
                 <span>Nova saída</span>
 

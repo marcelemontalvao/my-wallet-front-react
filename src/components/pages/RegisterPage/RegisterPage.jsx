@@ -81,7 +81,7 @@ const RegisterPage = () => {
 
                     <Input register={register("passwordConfirm")} type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirme a senha" disabled={disabled} errors={errors.passwordConfirm?.message && <p aria-label="error">{errors.passwordConfirm.message}</p>} />
                     
-                    <Button1  text="Cadastrar" disabled={disabled} />
+                    <Button1 type="submit" text="Cadastrar" disabled={disabled} />
                 </FormRegisterPage>
 
                 <Link to={"/"}>
