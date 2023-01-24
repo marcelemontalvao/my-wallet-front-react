@@ -20,7 +20,6 @@ export const HomePageStyle = styled.main`
     }
 
     .second-div {
-        background-color: blue;
         max-width: 325px;
         width: 100%;
         max-height: 446px;
@@ -63,6 +62,21 @@ export const HomePageStyle = styled.main`
         font-size: 17px;
         line-height: 20px;
         color: #FFFFFF;
+    }
+
+    .another-div {
+        max-width: 325px;
+        width: 100%;
+        max-height: 446px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFFFFF;
+        color: #868686;
+        border-radius: 5px;
     }
 
     a {
