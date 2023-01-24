@@ -49,9 +49,9 @@ const OutputPage = () => {
 
                 <span>Nova saída</span>
 
-                <Input register={register("value")} type="text" name="value" id="value" disabled={disabled} placeholder="Valor" />
+                <Input register={register("value")} type="text" name="value" id="value" disabled={disabled} placeholder="Valor" errors={errors.value?.message && <p aria-label="error">{errors.value.message}</p>}  />
 
-                <Input register={register("description")} type="text" name="description" id="description" disabled={disabled} placeholder="Descrição" />
+                <Input register={register("description")} type="text" name="description" id="description2" disabled={disabled} placeholder="Descrição" errors={errors.description?.message && <p aria-label="error">{errors.description.message}</p>}  />
 
                 <Button1 type="submit" text="Salvar saída" disabled={disabled} />
 

@@ -8,10 +8,8 @@ import { UserContext } from "../../../contexts/UserContext";
 import { api } from "../../../services/api";
 
 const HomePage = () => {
-    const { user } = useContext(UserContext);
-    const { token } = useContext(UserContext)
-    const [transactions, setTransactions] = useState({})
-
+    const { user, token, logoutFunction } = useContext(UserContext);
+    const [transactions, setTransactions] = useState([])
     console.log(transactions)
 
     useEffect(()=> {
@@ -26,6 +24,18 @@ const HomePage = () => {
                 if(!response) {
                     return null;
                 } else if (response && response.status === 200) {
+                    console.log(response.data)
+                    const result = response.data.reduce((acc, transaction) => {
+                        switch (transaction.type) {
+                          case 'input':
+                            return acc + transaction.value;
+                          case 'output':
+                            return acc - transaction.value;
+                          default:
+                            return acc;
+                        }
+                      }, 0);
+                      console.log(result)
                     setTransactions(response.data)
                 }
             } catch (error) {
@@ -35,18 +45,32 @@ const HomePage = () => {
         getTransactions()
     }, [])
 
-    if (!transactions) {
+    if (transactions.length > 0) {
         return (
             <HomePageStyle>
                 <div className="first-div">
                     <p>Olá, { user }</p>
-                    <img src={vector} alt="" />
+                    <img onClick={logoutFunction} src={vector} alt="" />
                 </div>
                 <div className="another-div">
                     <div>
-                        {transactions.map((transaction)=> {
-                           console.log(transaction.transaction.value)
+                        {transactions.map((transaction, index)=> {
+                            if(transaction.transaction.type === "input") {
+                                return <div className="transaction">
+                                    <span key={index}> <span className="date"> {transaction.transaction.createdAt}</span> {transaction.transaction.description}</span>
+                                    <span className="input">{transaction.transaction.value.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
+                                </div>
+                            } else {
+                                return <div className="transaction">
+                                    <span key={index}> <span className="date">{transaction.transaction.createdAt} </span> {transaction.transaction.description}</span>
+                                    <span className="output">{transaction.transaction.value.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
+                                </div>
+                            }
                         })}
+                    </div>
+                    <div className="transaction">
+                        <span>SALDO</span>
+                        <span className="input">2849.96</span>
                     </div>
                 </div>
                 <div className="third-div">
@@ -70,7 +94,7 @@ const HomePage = () => {
             <HomePageStyle>
                 <div className="first-div">
                     <p>Olá, { user }</p>
-                    <img src={vector} alt="" />
+                    <img onClick={logoutFunction} src={vector} alt="" />
                 </div>
                 <div className="second-div">
                     <div>

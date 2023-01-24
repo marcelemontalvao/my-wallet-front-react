@@ -31,8 +31,19 @@ export const UserProvider = ({ children }) => {
             setDisabled(false)
         }
     }
+
+    const logoutFunction = () => {
+        setUser(undefined)
+        setToken(undefined)
+        navigate("/")
+    }
+
+    if(loading) {
+        return null;
+    }
+
     return (
-        <UserContext.Provider value={{ submitFormFunction, user, setUser, disabled, setDisabled, loading, token }}>
+        <UserContext.Provider value={{ submitFormFunction, user, setUser, disabled, setDisabled, loading, token, logoutFunction }}>
             {children}
         </UserContext.Provider>
     )

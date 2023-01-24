@@ -7,7 +7,7 @@ import { api } from "../../../services/api";
 import Button1 from "../../Button1/Button1";
 import Input from "../../Input/Input";
 import { InputPageStyle, FormInputPage } from "./InputPageStyles";
-import inputSchema from "./InputSchema";
+import inputSchema from "./InputSchema.js";
 
 const InputPage = () => {
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ const InputPage = () => {
     const [loading, setLoading] = useState(false);
     const { token } = useContext(UserContext);
     console.log(token)
-    
+
     const submitFormFunction = async (data) => {
         setLoading(true)
         setDisabled(true)
@@ -54,7 +54,7 @@ const InputPage = () => {
 
                 <Input register={register("value")} type="text" name="value" id="value" disabled={disabled} placeholder="Valor" errors={errors.value?.message && <p aria-label="error">{errors.value.message}</p>}  />
 
-                <Input register={register("description")} type="text" name="description" id="description" disabled={disabled} placeholder="Descrição" errors={errors.description?.message && <p aria-label="error">{errors.description.message}</p>}  />
+                <Input register={register("description")} type="text" name="description" id="description1" disabled={disabled} placeholder="Descrição" errors={errors.description?.message && <p aria-label="error">{errors.description.message}</p>}  />
 
                 <Button1 type="submit" text="Salvar entrada" disabled={disabled} />
 

@@ -65,18 +65,40 @@ export const HomePageStyle = styled.main`
     }
 
     .another-div {
-        max-width: 325px;
+        max-width: 310px;
         width: 100%;
-        max-height: 446px;
+        max-height: 440px;
         height: 100%;
         display: flex;
         flex-direction: column;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         background-color: #FFFFFF;
         color: #868686;
         border-radius: 5px;
+        padding: 15px;
+    }
+
+    .transaction {
+        width: 310px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        line-height: 19px;
+        color: #000000;
+    }
+
+    .date {
+        color: #C6C6C6;
+    }
+
+    .input {
+        color: #03AC00;
+    }
+
+    .output {
+        color: #C70000;
     }
 
     a {
